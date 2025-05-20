@@ -24,7 +24,7 @@ variable "sa_name" {
 variable "endpoint_name" {
   description = "Nom technique (unique) de l'endpoint Vertex"
   type        = string
-  default     = "mlops-endpoint"  # ou sans default, à définir dans tfvars
+  default     = "mlops-endpoint" # ou sans default, à définir dans tfvars
 }
 
 

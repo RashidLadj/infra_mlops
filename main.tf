@@ -57,9 +57,9 @@ module "storage" {
 }
 
 module "service_account" {
-  source      = "./modules/service_account"
-  sa_name     = var.sa_name
-  project_id  = var.project_id
+  source     = "./modules/service_account"
+  sa_name    = var.sa_name
+  project_id = var.project_id
 }
 
 module "vertex_ai" {

@@ -10,15 +10,11 @@ terraform {
       source  = "hashicorp/google"
       version = ">= 4.50.0"
     }
-    local = {
-      source  = "hashicorp/local"
-      version = "~> 2.5.0"
-    }
   }
 }
 
-# ---- provider config ----
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
+# # ---- provider config ----
+# provider "google" {
+#   project = var.project_id
+#   region  = var.region
+# }

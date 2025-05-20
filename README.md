@@ -95,3 +95,55 @@ endpoint_display_name  = "MLOps Model Endpoint"
 
 ## Contact
 Pour toute question, n'hésite pas à me contacter.
+
+
+---
+---
+
+## Qualité du code et hooks Git avec pre-commit
+
+Pour assurer la qualité et la cohérence du code Terraform, un système de **hooks Git** via [`pre-commit`](https://pre-commit.com) a été mis en place dans ce dépôt.
+
+Avant chaque commit, plusieurs vérifications automatiques sont effectuées :  
+- Formatage automatique du code avec `terraform fmt`  
+- Validation de la configuration avec `terraform validate`  
+- Analyse statique avancée avec `TFLint`
+
+---
+
+### Prérequis pour les développeurs / DevOps collaborateurs
+
+Afin que ces hooks fonctionnent correctement, merci de vous assurer des éléments suivants sur votre environnement local :
+
+- **Terraform** doit être installé (version >= 1.3.0).  
+- Un `terraform init` doit avoir été exécuté dans le dossier pour initialiser les providers.  
+- **TFLint** doit être installé localement.  
+
+Pour installer TFLint :
+
+- Sur macOS (via Homebrew) :
+  ```bash
+  brew install tflint
+  ```
+
+
+- Sur Linux, utiliser le script officiel :
+  ```bash
+  curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+  ```
+
+- Ou consulter la documentation officielle pour d'autres méthodes : https://github.com/terraform-linters/tflint#installation
+
+
+### Installation des hooks pre-commit
+Après avoir cloné le dépôt, installez les hooks avec la commande suivante :
+  ```bash
+  pre-commit install -v config/pre-commit/.pre-commit-config.yaml
+  ```
+
+Si vous ne disposez pas encore de pre-commit, vous pouvez l’installer via pip :
+  ```bash
+  pip install pre-commit
+  ```
+
+Cette configuration aide à prévenir l’introduction d’erreurs dans le code Terraform et garantit une meilleure qualité globale du projet lors des collaborations.

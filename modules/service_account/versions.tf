@@ -17,8 +17,8 @@ terraform {
   }
 }
 
-# ---- provider config ----
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
+# # ---- provider config ----
+# provider "google" {
+#   project = var.project_id
+#   region  = var.region
+# }
