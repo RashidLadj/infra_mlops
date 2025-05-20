@@ -1,0 +1,18 @@
+name: Enforce PR source branch naming
+
+on:
+  pull_request:
+    branches:
+      - master  # ou main selon ta branche cible
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if source branch does not start with rd/
+        run: |
+          echo "Source branch: ${{ github.head_ref }}"
+          if [[ "${{ github.head_ref }}" != rd/* ]]; then
+            echo "::error ::Branch name must start with 'rd/'"
+            exit 1
+          fi
