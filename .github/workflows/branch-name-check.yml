@@ -1,0 +1,16 @@
+name: Branch name policy
+
+on:
+  push:
+    branches-ignore:
+      - 'master'
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name starts with rd/
+        if: ${{ !startsWith(github.ref_name, 'rd/') }}
+        run: |
+          echo "ERROR: Pushes are only allowed on branches starting with 'rd/'"
+          exit 1
