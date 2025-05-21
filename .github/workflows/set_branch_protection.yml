@@ -1,0 +1,34 @@
+name: Set Branch Protection
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branche à protéger'
+        default: 'master'
+        required: false
+
+jobs:
+  protect-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configurer le CLI GitHub
+        uses: cli/cli-action@v1
+
+      - name: Appliquer la règle de protection sur la branche
+        run: |
+          OWNER_REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner)
+          echo "Applique les règles sur $OWNER_REPO / ${{ inputs.branch }}"
+
+          gh api \
+            --method PUT \
+            /repos/$OWNER_REPO/branches/${{ inputs.branch }}/protection \
+            -f required_status_checks.strict=true \
+            -F required_status_checks.contexts[]=check-branch-name \
+            -F enforce_admins=true \
+            -F required_pull_request_reviews.required_approving_review_count=1 \
+            -F required_pull_request_reviews.dismiss_stale_reviews=true \
+            -F required_pull_request_reviews.require_code_owner_reviews=false
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
