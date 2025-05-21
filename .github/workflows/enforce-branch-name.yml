@@ -13,6 +13,6 @@ jobs:
         run: |
           echo "Source branch: ${{ github.head_ref }}"
           if [[ "${{ github.head_ref }}" != rd/* ]]; then
-            echo "::error ::Branch name must start with 'rd/'"
+            echo "::error file=branch-check::Branch name must start with 'rd/'"
             exit 1
           fi
